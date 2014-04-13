@@ -31,11 +31,13 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
     'django.contrib.admin',
+    'django.contrib.admindocs',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'waiter.apps.producto',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -62,7 +64,11 @@ DATABASES = {
         'USER': 'waiter',
         'PASSWORD':'waiter',
         'HOST':'localhost',
+<<<<<<< HEAD
         'PORT': '5432',
+=======
+        'PORT':'5432',
+>>>>>>> 6311066114bdc615fc47bcfdb776216eaade33e1
     }
 }
 
