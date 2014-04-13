@@ -28,8 +28,9 @@ class Producto(models.Model):
 	precio = models.DecimalField(max_digits=7, decimal_places=2, help_text='Registre el precio de del producto.')
 	#imagen = models.ImageField(help_text='Seleccione una imagen.')
 	estado = models.BooleanField(default=True,  help_text='Seleccione la opción para que el producto se mantenga activo.')
-	categoria = models.OneToOneField(Categoria)
-	areaProduccion = models.OneToOneField(AreaProduccion)
+	categoria = models.ForeignKey(Categoria)
+	#categoria = models.OneToOneField(Categoria)
+	areaProduccion = models.ForeignKey(AreaProduccion)
 	class Meta:
 		ordering = ['nombre']
 		db_table = ('Producto')
@@ -52,4 +53,38 @@ class Operacion(models.Model):
 		verbose_name_plural = ('Operaciones')
 	def __unicode__(self):	
 		return '[%s : %s - %s min]' % (self.producto.nombre, self.modificable, self.tiempoActualizacion)
+
+class Ingrediente(models.Model):
+	nombre = models.CharField(max_length=200, help_text='Ingrese el nombre del ingrediente.')
+	tiempoPreparacion = models.IntegerField(help_text='Registre el tiempo de preparación de este ingrediente')
+	detallePreparacion = models.TextField(help_text='Registre un detalle de preparación del ingrediente.')
+	class Meta:
+		db_table = ('Ingrediente')
+		verbose_name = ('Ingrediente')
+		verbose_name_plural = ('Ingredientes')
+	def __unicode__(self):
+		return '%s : %s min' % (self.nombre, self.tiempoPreparacion)
+
+class DetalleIngrediente(models.Model):
+	nombre = models.CharField(max_length=200, help_text='Componente de ingrediente específico.')
+	ingrediente = models.ForeignKey(Ingrediente)
+	class Meta:
+		db_table = ('DetalleIngrediente')
+		verbose_name = ('Detalle de ingrediente')
+		verbose_name_plural = ('Detalle de ingredientes')
+	def __unicode__(self):
+		return self.nombre
+
+class Composicion(models.Model):
+	cantidad = models.IntegerField(help_text='Detalla la cantidad de ingredientes a utilizar.')
+	visible = models.BooleanField(default=True, help_text='Active la opcion para que la composición este activa.')
+	ingrediente = models.ForeignKey(Ingrediente)
+	producto = models.ForeignKey(Producto)
+
+	class Meta:
+		db_table = ('Composicion')
+		verbose_name = ('Composición')
+		verbose_name_plural = ('Composiciones')
+	def __unicode__(self):
+		return '%s %s' % (self.cantidad, self.ingrediente.nombre)    
     
