@@ -65,11 +65,7 @@ DATABASES = {
         'USER': 'waiter',
         'PASSWORD':'waiter',
         'HOST':'localhost',
-<<<<<<< HEAD
-        'PORT': '5432',
-=======
         'PORT':'5432',
->>>>>>> 6311066114bdc615fc47bcfdb776216eaade33e1
     }
 }
 
