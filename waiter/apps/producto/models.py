@@ -88,3 +88,46 @@ class Composicion(models.Model):
 	def __unicode__(self):
 		return '%s %s' % (self.cantidad, self.ingrediente.nombre)    
     
+    #Codigo Jairo
+class GrupoIngrediente(models.Model):
+	nombre = models.CharField(max_length=200, help_text='Componente de ingrediente específico.')
+	detallePreparacion = models.CharField(mas_length=200, help_text='detallePreparacion')
+	modificable= models.BooleanField(default=,help_text='Active esta opcion para que este activa')
+     class Meta:
+     	db_table = ('GrupoIngrediente')
+     	verbose_name =('GrupoIngrediente')
+     	verbose_name_plural = ('GrupoIngredientes')
+    def __unicode__(self):
+        return '%s %s' % (self.nombre, self.detallePreparacion)
+
+class Composicion_GrupoIngrediente(models.Model):
+	composicion = models.Composicion
+	grupoingrediente= models.GrupoIngrediente
+
+    class Meta:
+       ss Meta:
+     	db_table = ('Composicion_GrupoIngrediente')
+     	verbose_name =('Composicion_GrupoIngrediente')
+     	verbose_name_plural = ('Composicion_GrupoIngredientes')
+
+    def __unicode__(self):
+        return '%s %s' % (self.composicion, self.grupoingrediente)
+    )
+
+class Grupoingrediente_Ingrediente(models.Model):
+          verbose_name = _('MODELNAME')
+        verbose_name_plural = _('MODELNAMEs')
+
+    def __unicode__(self):
+        pass
+    
+
+
+	
+
+
+		
+
+
+		
+		
