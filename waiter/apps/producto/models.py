@@ -81,7 +81,3 @@ class Composicion(models.Model):
 		verbose_name_plural = ('Composiciones')
 	def __unicode__(self):
 		return '%s %s' % (self.cantidad, self.producto.nombre) 
-    
-
-    
-
