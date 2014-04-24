@@ -1,9 +1,9 @@
-<html>
-	<head>
-		<title>Agregar Producto</title>
-	</head>
+{% extends "base/base.html" %}
+{% block title %}
+	Agregar nuevo producto
+{% endblock title %}
 
-	<body>
+{% block content %}
 		<form action="." method='POST'>
 			{% csrf_token %}
 			{{formulario.as_p}}
@@ -11,6 +11,7 @@
 			<input type="reset" value= "Limpiar">
 		</form>
 		<br>
-		{{informacion}}
-	</body>	
-</html>
+		{{informacion}}	
+		<br>
+		<a href="{%url "vista_productos"%}">Regresar</a>
+{% endblock content %}

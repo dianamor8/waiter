@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.template import RequestContext
-from waiter.apps.producto.models import Producto
+from waiter.apps.producto.models import Producto, ESTADO_CHOICES
 from waiter.apps.producto.forms import addProductForm
 # Create your views here.
 
 def productos_view(request):
-	pro = Producto.objects.filter(estado=True)
+	activo = ESTADO_CHOICES[0][0]
+	no_activo = ESTADO_CHOICES[1][0]
+	pro = Producto.objects.filter(estado=activo)
 	ctx = {'productos':pro}
 	return render(request, 'producto/productos.html',ctx)
 

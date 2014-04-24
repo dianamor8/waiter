@@ -23,17 +23,19 @@ class AreaProduccion(models.Model):
 		return self.nombre
 
 #Tipo enumerado para el estado del producto
+ACTIVO = 1	
+NO_ACTIVO = 0
 ESTADO_CHOICES = (
-	('A', 'ACTIVO'),
-	('D', 'NO ACTIVO'),
+	(ACTIVO, 'ACTIVO'),
+	(NO_ACTIVO, 'NO ACTIVO'),
 )
 
 class Producto(models.Model):
+
 	codigo = models.CharField(max_length=100, help_text='Código de producto', unique=True)
 	nombre = models.CharField(max_length=300, help_text='Ingrese el nombre del producto')
 	precio = models.DecimalField(max_digits=7, decimal_places=2, help_text='Registre el precio de del producto.')
-	#imagen = models.ImageField(help_text='Seleccione una imagen.')
-	#estado = models.BooleanField(default=True,  help_text='Seleccione la opción para que el producto se mantenga activo.')
+	#imagen = models.ImageField(help_text='Seleccione una imagen.')	
 	categoria = models.ForeignKey(Categoria)	
 	areaProduccion = models.ForeignKey(AreaProduccion)
 	estado = models.CharField(choices=ESTADO_CHOICES, max_length=30)
