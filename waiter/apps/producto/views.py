@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.template import RequestContext
-from waiter.apps.producto.models import Producto, ESTADO_CHOICES, Categoria
+from waiter.apps.producto.models import Producto, ESTADO_CHOICES, Categoria, AreaProduccion
 from waiter.apps.producto.forms import addProductForm
 
 # Create your views here.
@@ -49,6 +49,10 @@ def categories_view(request):
 	ctx= {'categorias':cat}
 	return render(request,'producto/categories.html',ctx)
 
+def area_de_produccion_view(request):	
+	arp=AreaProduccion.objects.all()
+	ctx={'areas_produccion':arp}
+	return render(request,'producto/productionAreas.html',arp)
 	
 
 		

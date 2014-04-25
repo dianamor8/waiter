@@ -1,0 +1,14 @@
+{% extends "base/base.html" %}
+{% block title %}
+	Lista de produccion
+{% endblock title %}
+
+{% block content %}
+	{% if areas_produccion %}
+		{% for a in  areas_produccion %}
+			<p>{{a.nombre}}</p>
+		{% endfor %}
+	{% else %}
+			<h2>no hay areas produccion</h2>
+	{% endif %}
+{% endblock content %}
