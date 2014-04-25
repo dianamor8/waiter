@@ -13,11 +13,11 @@ def index_view(request):
 	return render(request, 'home/index.html')
 
 def about_view(request):
-	mensaje = "Este es mi mensaje"
+	mensaje = "Hola jairo"
 	ctx = {'msg':mensaje}
 	return render(request, 'home/about.html',ctx)
 
-def contact_view(request):
+def contact_view(request):	
 	info_enviado = False
 	email = ""
 	titulo = ""
