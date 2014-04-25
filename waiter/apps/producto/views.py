@@ -41,7 +41,7 @@ def add_product_view(request):
 	else: #SI ES GET	
 		formulario 	= addProductForm()
 		ctx = {'formulario':formulario}
-<<<<<<< HEAD
+
 		return render(request,'producto/addProduct.html',ctx)
 
 def categories_view(request):
@@ -50,6 +50,5 @@ def categories_view(request):
 	return render(request,'producto/categories.html',ctx)
 
 	
-=======
-		return render(request,'producto/agregarProducto.html',ctx)
->>>>>>> b7636c699d5318ec8f5ae633eeec9fd52a3331e0
+
+		
