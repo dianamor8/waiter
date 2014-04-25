@@ -11,3 +11,15 @@ class addProductForm(forms.Form):
 
 	def clean(self):
 		return self.cleaned_data
+
+class addCategoria(forms.Form):
+	categoria = forms.CharField(widget=forms.TextInput())
+	def clean(self):
+		return self.cleaned_data
+    
+class addAreaProduccion(forms.Form):
+	area_de_produccion = forms.CharField(widget=forms.TextInput())
+	def clean(self):
+		return self.cleaned_data
+
+		

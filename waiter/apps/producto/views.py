@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.template import RequestContext
-from waiter.apps.producto.models import Producto, ESTADO_CHOICES
+from waiter.apps.producto.models import Producto, ESTADO_CHOICES, Categoria
 from waiter.apps.producto.forms import addProductForm
+
 # Create your views here.
 
 def productos_view(request):
@@ -40,3 +41,10 @@ def add_product_view(request):
 		formulario 	= addProductForm()
 		ctx = {'formulario':formulario}
 		return render(request,'producto/addProduct.html',ctx)
+
+def categories_view(request):
+	categorias= Categoria.objects.filter(id=1)
+	ctx= {'categorias':categorias}
+	return render(request,'producto/categories.html',ctx)
+
+	
