@@ -94,3 +94,10 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'mp.dianalexa@gmail.com'
 EMAIL_HOST_PASSWORD = 'morochitodiana1105'
 EMAIL_USE_TLS = True
+#
+
+
+#SERVIDOR DE MEDIOS 
+MEDIA_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'waiter/media/'))
+MEDIA_URL = '/media/'
+#SERVIDOR DE MEDIOS

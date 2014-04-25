@@ -64,6 +64,7 @@ class GrupoIngrediente(models.Model):
 	detallePreparacion = models.TextField(help_text='Agregue detalles de preparación del grupo.')
 	modificable= models.BooleanField(default=True, help_text='Active esta opcion si éste componente es editable')	
 	ingredientes = models.ManyToManyField(Ingrediente)
+	
 	class Meta:
 		db_table = ('GrupoIngrediente')
 		verbose_name =('GrupoIngrediente')
