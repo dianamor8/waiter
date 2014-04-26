@@ -41,4 +41,4 @@ def contact_view(request):
 	else:
 		formulario = ContactForm()
 	ctx = {"form":formulario, 'email':email, 'titulo':titulo, 'texto':texto, 'info_enviado':info_enviado}
-	return render(request, "home/contacto.html",ctx)
+	return render(request, "home/contact.html",ctx)
