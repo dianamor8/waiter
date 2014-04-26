@@ -3,13 +3,14 @@ from django.template import RequestContext
 from waiter.apps.producto.models import Producto, ESTADO_CHOICES
 from waiter.apps.producto.forms import addProductForm
 # Create your views here.
+# Nombres de views en ingles
 
-def productos_view(request):
+def products_view(request):
 	activo = ESTADO_CHOICES[0][0]
 	no_activo = ESTADO_CHOICES[1][0]
 	pro = Producto.objects.filter(estado=activo)
 	ctx = {'productos':pro}
-	return render(request, 'producto/productos.html',ctx)
+	return render(request, 'producto/products.html',ctx)
 
 def add_product_view(request):
 	if request.method == "POST":
@@ -35,8 +36,8 @@ def add_product_view(request):
 			info = "Informacion con datos incorrectos"
 		formulario 	= addProductForm()
 		ctx = {'formulario':formulario,'informacion':info}
-		return render(request,'producto/addProduct.html',ctx)
+		return render(request,'producto/agregarProducto.html',ctx)
 	else: #SI ES GET	
 		formulario 	= addProductForm()
 		ctx = {'formulario':formulario}
-		return render(request,'producto/addProduct.html',ctx)
+		return render(request,'producto/agregarProducto.html',ctx)
