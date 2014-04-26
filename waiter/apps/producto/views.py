@@ -45,8 +45,8 @@ def add_product_view(request):
 		return render(request,'producto/addProduct.html',ctx)
 
 def categories_view(request):
-	categorias= Categoria.objects.filter(id=1)
-	ctx= {'categorias':categorias}
+	cat= Categoria.objects.all()
+	ctx= {'categorias':cat}
 	return render(request,'producto/categories.html',ctx)
 
 	

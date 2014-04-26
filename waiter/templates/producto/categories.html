@@ -1,15 +1,19 @@
 {% extends "base/base.html" %}
-
 {% block title %}
 	Lista de categorias
 {% endblock title %}
 
 {% block content %}
 	{% if categorias %}
-			{% for c in  categorias %}
-				<p>{%c%}</p>
-			{% endfor %}
-		{% else %}
+		{% for c in  categorias %}
+			<p>{{c.nombre}}</p>
+		{% endfor %}
+	{% else %}
 			<h2>no hay categorias</h2>
-		{% endif %}
+	{% endif %}
 {% endblock content %}
+
+
+
+
+
