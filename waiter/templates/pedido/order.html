@@ -1,0 +1,14 @@
+{% extends "base/base.html" %}
+{% block title %}
+	Pedido
+{% endblock title %}
+
+{% block content %}
+	{% if pedido %}
+		{% for ped in  pedido %}
+			<p>{{ped.codigo}}</p>
+		{% endfor %}
+	{% else %}
+			<h2>no hay pedidos</h2>
+	{% endif %}
+{% endblock content %}

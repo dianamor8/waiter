@@ -52,7 +52,7 @@ def categories_view(request):
 def area_de_produccion_view(request):	
 	arp=AreaProduccion.objects.all()
 	ctx={'areas_produccion':arp}
-	return render(request,'producto/productionAreas.html',arp)
+	return render(request,'producto/productionAreas.html',ctx)
 	
 
 		

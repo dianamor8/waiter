@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'waiter.apps.producto',
     'waiter.apps.home',
+    'waiter.apps.pedido',
 )
 
 MIDDLEWARE_CLASSES = (
