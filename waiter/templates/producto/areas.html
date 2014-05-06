@@ -1,0 +1,14 @@
+{% extends "base/base.html" %}
+{% block title %}
+	Lista de categorias
+{% endblock title %}
+
+{% block content %}
+	{% if areas %}
+		{% for a in  areas %}
+			<p>{{a.nombre}}</p>
+		{% endfor %}
+	{% else %}
+			<h2>no hay areas</h2>
+	{% endif %}
+{% endblock content %}

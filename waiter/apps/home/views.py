@@ -16,7 +16,7 @@ def index_view(request):
 	return render(request, 'home/index.html')
 
 def about_view(request):
-	mensaje = "Hola jairo"
+	mensaje = "A cerca de.."
 	ctx = {'msg':mensaje}
 	return render(request, 'home/about.html',ctx)
 
