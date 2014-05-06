@@ -9,7 +9,9 @@ urlpatterns = patterns('',
     # url(r'^$', 'waiter.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 	url(r'^', include('waiter.apps.home.urls')),
-	url(r'^', include('waiter.apps.producto.urls')),	
+	url(r'^', include('waiter.apps.producto.urls')), 
+	url(r'^', include('waiter.apps.pedido.urls')), 	
 	url(r'^admin/', include(admin.site.urls)),	
 	url(r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.MEDIA_ROOT}),	
+
 )
