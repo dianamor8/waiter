@@ -32,11 +32,14 @@ ESTADO_CHOICES = (
 )
 
 class Producto(models.Model):
+	def url(self, filename):
+		ruta = "MultimediaData/Producto/%s/%s"%(self.nombre, str(filename))		
+		return ruta
 
 	codigo = models.CharField(max_length=100, help_text='Código de producto', unique=True)
 	nombre = models.CharField(max_length=300, help_text='Ingrese el nombre del producto')
 	precio = models.DecimalField(max_digits=7, decimal_places=2, help_text='Registre el precio de del producto.')
-	#imagen = models.ImageField(help_text='Seleccione una imagen.')	
+	imagen = models.ImageField(upload_to=url,help_text='Seleccione una imagen.', null=True)
 	categoria = models.ForeignKey(Categoria)	
 	areaProduccion = models.ForeignKey(AreaProduccion)
 	estado = models.CharField(choices=ESTADO_CHOICES, max_length=30)
@@ -47,6 +50,7 @@ class Producto(models.Model):
 		verbose_name_plural = ('Productos')	
 	def __unicode__(self):
 		return self.nombre
+	
 
 class Ingrediente(models.Model):
 	nombre = models.CharField(max_length=200, help_text='Ingrese el nombre del ingrediente.')
