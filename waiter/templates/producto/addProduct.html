@@ -1,9 +1,11 @@
 {% extends "base/base.html" %}
+
 {% block title %}
 	Agregar nuevo producto
 {% endblock title %}
 
 {% block content %}
+	{% if user.is_authenticated %}
 		<form action="." method='POST'>
 			{% csrf_token %}
 			{{formulario.as_p}}
@@ -14,4 +16,5 @@
 		{{informacion}}	
 		<br>
 		<a href="{%url "vista_products"%}">Regresar</a>
+	{% endif %}
 {% endblock content %}
