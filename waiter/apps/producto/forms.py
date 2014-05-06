@@ -8,7 +8,7 @@ class addProductForm(forms.Form):
 	estado = forms.ChoiceField(required=True, widget=forms.Select(),choices=ESTADO_CHOICES)	
 	categoria = forms.ModelChoiceField(queryset= Categoria.objects.all(), required=True)
 	area_de_produccion = forms.ModelChoiceField(queryset= AreaProduccion.objects.all(), required=True)
-
+	imagen = forms.ImageField(required=False)
 	def clean(self):
 		return self.cleaned_data
 

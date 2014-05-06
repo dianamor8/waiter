@@ -39,10 +39,10 @@ class Producto(models.Model):
 	codigo = models.CharField(max_length=100, help_text='Código de producto', unique=True)
 	nombre = models.CharField(max_length=300, help_text='Ingrese el nombre del producto')
 	precio = models.DecimalField(max_digits=7, decimal_places=2, help_text='Registre el precio de del producto.')
-	imagen = models.ImageField(upload_to=url,help_text='Seleccione una imagen.', null=True)
 	categoria = models.ForeignKey(Categoria)	
 	areaProduccion = models.ForeignKey(AreaProduccion)
-	estado = models.CharField(choices=ESTADO_CHOICES, max_length=30)
+	estado = models.CharField(choices=ESTADO_CHOICES, max_length=2)
+	imagen = models.ImageField(upload_to=url,help_text='Seleccione una imagen.', null=True, blank=True, max_length=300)
 	class Meta:
 		ordering = ['nombre']
 		db_table = ('Producto')

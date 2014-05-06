@@ -21,12 +21,13 @@ def products_view(request):
 def add_product_view(request):
 	if request.user.is_authenticated():	
 		if request.method == "POST":
-			formulario = addProductForm(request.POST)
+			formulario = addProductForm(request.POST, request.FILES)
 			info = "Inicializando"
 			if formulario.is_valid():
 				codigo= formulario.cleaned_data['codigo']			
 				nombre= formulario.cleaned_data['nombre']
 				precio= formulario.cleaned_data['precio']
+				imagen= formulario.cleaned_data['imagen'] # esto se obtiene con el request.FILES
 				estado= formulario.cleaned_data['estado']
 				categoria = formulario.cleaned_data['categoria']
 				areaProduccion = formulario.cleaned_data['area_de_produccion']
@@ -35,6 +36,8 @@ def add_product_view(request):
 				p.nombre = nombre
 				p.precio = precio
 				p.estado = estado
+				if imagen:
+					p.imagen = imagen
 				p.categoria = categoria
 				p.areaProduccion = areaProduccion
 				p.save()
