@@ -5,15 +5,20 @@
 
 {% block content %}
 	{% if categorias %}
+		<table style="width:300px", border="3px">
+			<tr>
+				<td>Número</td>
+				<td>Nombre</td>
+			</tr>
 		{% for c in  categorias %}
-			<p>{{c.nombre}}</p>
+			<!--<p>{{c.nombre}}</p>-->
+			<tr>
+				<td>{{c.id}}</td>
+				<td>{{c.nombre}}</td>
+			</tr>
 		{% endfor %}
+		</table> 
 	{% else %}
 			<h2>no hay categorias</h2>
 	{% endif %}
 {% endblock content %}
-
-
-
-
-
