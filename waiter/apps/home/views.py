@@ -15,6 +15,9 @@ from django.http import HttpResponseRedirect
 def index_view(request):
 	return render(request, 'home/index.html')
 
+def carousel_view(request):
+	return render(request, 'base/carousel.html')
+
 def about_view(request):
 	mensaje = "A cerca de.."
 	ctx = {'msg':mensaje}

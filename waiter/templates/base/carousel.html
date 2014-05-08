@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="/media/bootstrap/css/bootstrap.css">
+		<script src="/media/js/jquery.js"></script>
+		<script src="/media/bootstrap/js/bootstrap.js"></script>
+	</head>
+
+	<body>
+		<!-- CARRUSEL -->
+		<div class="contenedor">
+			<div id="myCarousel" class="carousel slide">
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+				</ol>
+				
+				<div class="carousel-inner">
+					<div class="item active">
+						<img src="/media/images/chef2.jpg" alt="banner1">					
+					</div><!-- imag1 -->
+					<div class="item">
+						<img src="/media/images/torta.jpg" alt="banner2">					
+					</div><!-- imag2 -->
+					<div class="item">
+						<img src="/media/images/menu.jpg" alt="banner3">					
+					</div><!-- imag3 -->
+				</div><!-- items -->
+				<a href="#myCarousel" class="left carousel-control" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+				</a>
+				<a href="#myCarousel" class="right carousel-control" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</a>
+			</div><!-- mycarousel -->
+			<script>
+				$(document).ready(function() {
+					$(".carousel").carousel({
+						interval : 2000
+					});
+				});
+			</script>
+		</div><!-- contenedor -->
+	</body>
+</html>
+
