@@ -1,5 +1,73 @@
-{% extends "base/base.html" %}
-{% block title %} Inicio - Bienvenidos {% endblock title %}
-{% block content %} 		
-	<img src="/media/images/waiter.gif" alt="">	
-	{% endblock content %}
+
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<!-- http://www.bootply.com/3u0YtpafSp# -->
+		<!-- http://www.bootply.com/render/102931 -->
+		<title>Waiter</title>
+		<meta charset="UTF-8">
+		<meta name="waiter" content="Waiter">		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">		
+		<link href="/media/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
+		<link href="/media/css/css1.css" rel="stylesheet">
+		<style type="text/css"></style>		
+		<script src="/media/js/jquery.js"></script>
+		<script src="/media/js/carousel.js" ></script>
+	</head>
+	<body>
+		<!-- Bootstrap JavaScript -->
+		
+		<!-- jQuery -->
+		
+		<div id="wrap">
+			<!-- PANEL DE IMAGEN EN EL HEADER -->
+			<header class="masthead">
+				<div id="myCarousel"  class="carousel slide">			 
+					<ol class="carousel-indicators">
+						<li id="li0" data-slideto="0" class="active"  onclick="changeImage(0);"></li>
+						<li id="li1" data-slideto="1" onclick="changeImage(1);" ></li>
+						<li id="li2" data-slideto="2" onclick="changeImage(2);"></li>
+					</ol>
+					<!-- DIV DE LAS IMAGENES -->
+					<!-- AGREGAR POR CADA IMAGEN EL ATRIBUTO id y data-slideto -->
+					<div class="carousel-inner">
+						<div id="img0" class="item active" data-slideto="0">
+							<img src="/media/images/chef2.jpg"/>
+							<div class="carousel-caption">
+								<h5>Waiter. La aplicación de los restaurantes</h5>					
+							</div><!-- carousel-caption -->				
+						</div>
+						<div id="img1" class="item" data-slideto="1">
+							<img src="/media/images/torta.jpg"/>
+							<div class="container">
+								<div class="carousel-caption">
+									<h5>Waiter. La aplicación de los restaurantes</h5>				
+								</div><!-- carousel-caption -->								
+							</div><!-- container-->
+						</div>
+						<div id="img2" class="item" data-slideto="2">
+							<img src="/media/images/menu.jpg" />
+							<div class="container">
+								<div class="carousel-caption">
+									<h5>Waiter. La aplicación de los restaurantes</h5>				
+								</div><!-- carousel-caption -->								
+							</div><!-- container-->
+						</div>
+					</div><!-- id:carousel-inner -->
+
+					<div class="logo">
+						<h2 id="nombre">Afrodiciaco. Restaurant</h2>
+					</div><!-- divlogo -->
+					<!-- LINK A LA DERECHA -->
+					<a class="left carousel-control" id="prev">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+					</a>
+					<!-- LINK A LA IZQUIERDA -->
+					<a class="right carousel-control" id="next">
+						<span class="glyphicon glyphicon-chevron-right"></span>
+					</a>
+				</div><!-- id:myCarousel -->				
+			</header> <!-- class: masthead -->			
+		</div> <!--div id=wrap-->		
+	</body>
+</html>

@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'waiter.apps.producto',
     'waiter.apps.home',
     'waiter.apps.pedido',
+    'waiter.apps.webservices.wsProductos',
 )
 
 MIDDLEWARE_CLASSES = (

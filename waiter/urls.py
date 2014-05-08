@@ -11,7 +11,10 @@ urlpatterns = patterns('',
 	url(r'^', include('waiter.apps.home.urls')),
 	url(r'^', include('waiter.apps.producto.urls')), 
 	url(r'^', include('waiter.apps.pedido.urls')), 	
+	url(r'^', include('waiter.apps.webservices.wsProductos.urls')), 	
 	url(r'^admin/', include(admin.site.urls)),	
 	url(r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.MEDIA_ROOT}),	
 
 )
+
+#	<!--<a class="navbar-brand" href="{%url "vista_principal"%}">-->			
