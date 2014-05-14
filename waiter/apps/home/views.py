@@ -13,7 +13,10 @@ from django.http import HttpResponseRedirect
 
 #Vista con render
 def index_view(request):
-	return render(request, 'home/index.html')
+	if request.user.is_authenticated():
+		return render(request, 'home/inicio.html')
+	else:		
+		return render(request, 'home/index.html')
 
 def carousel_view(request):
 	return render(request, 'base/carousel.html')
@@ -53,7 +56,7 @@ def contact_view(request):
 def login_view(request):
 	mensaje = ""
 	if request.user.is_authenticated():
-		return HttpResponserRedirect('/')
+		return HttpResponseRedirect('/')
 	else:
 		if(request.method == "POST"):
 			form = LoginForm(request.POST)
@@ -67,7 +70,7 @@ def login_view(request):
 				else:
 					mensaje = "usuario y/o password incorrecto"
 		form = LoginForm()
-		ctx = {'form':form, 'mensaje':mensaje}
+		ctx = {'LoginForm':form, 'mensaje':mensaje}
 		return render(request, "home/login.html", ctx)
 
 def logout_view(request):

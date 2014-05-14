@@ -1,0 +1,13 @@
+body {
+    background-color: #FFFFFF;
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+
+.form-heading{    
+    background-color: #EEEEEE;
+    border-radius: 10px;
+    padding-top: 2%;
+    padding-bottom: 2%;    
+}
