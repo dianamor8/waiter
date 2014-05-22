@@ -52,27 +52,3 @@ def contact_view(request):
 	ctx = {"form":formulario, 'email':email, 'titulo':titulo, 'texto':texto, 'info_enviado':info_enviado}
 	return render(request, "home/contact.html",ctx)
 
-
-def login_view(request):
-	mensaje = ""
-	if request.user.is_authenticated():
-		return HttpResponseRedirect('/')
-	else:
-		if(request.method == "POST"):
-			form = LoginForm(request.POST)
-			if form.is_valid():
-				username = form.cleaned_data["username"]
-				password = form.cleaned_data["password"]
-				usuario = authenticate(username=username, password=password)
-				if usuario is not None and usuario.is_active:
-					login(request,usuario)
-					return HttpResponseRedirect('/')
-				else:
-					mensaje = "usuario y/o password incorrecto"
-		form = LoginForm()
-		ctx = {'LoginForm':form, 'mensaje':mensaje}
-		return render(request, "home/login.html", ctx)
-
-def logout_view(request):
-	logout(request)
-	return HttpResponseRedirect('/')

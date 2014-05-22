@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,'waiter/templates'),)
 
@@ -37,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'waiter.apps.usuarios',
     'waiter.apps.producto',
     'waiter.apps.home',
     'waiter.apps.pedido',
@@ -103,3 +105,10 @@ EMAIL_USE_TLS = True
 MEDIA_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'waiter/media/'))
 MEDIA_URL = '/media/'
 #SERVIDOR DE MEDIOS
+
+
+#PARA REDIRECCIONAR EL LOGIN
+LOGIN_URL = '/usuarios/login/'
+LOGIN_REDIRECT_URL = '/'
+
+

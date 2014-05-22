@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>Iniciar Sesión</title>
+		<meta charset="UTF-8">
+		<meta name=description content="">
+		<meta name=viewport content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="/media/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">	
+		<link href="/media/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+		<link href="/media/css/signin.css" rel="stylesheet" media="screen">
+		<script src="/media/js/jquery.js"></script>
+		<script src="/media/js/jquery.min.js"></script>
+		<script src="/media/bootstrap/js/bootstrap.js"></script>		
+	</head>
+	<body>
+
+		<div class="container">
+			<!--<div id="divAlert" class="alert alert-warning alert-dismissable" style="display: none">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<strong>Alerta!</strong> {{mensaje}}
+			</div>-->			
+			<div class="row form-heading">
+				<div class="col-md-4">
+					<h3 class="text-right">Identifíquese</h3>
+				</div> 
+				<div class="col-md-8" style="line-height:60px">  <!---->
+					<form action="." class="form-inline" role="form" method="POST">
+						{% csrf_token %}		
+						<div class="form-group">					
+							{{LoginForm.username}}						
+							{{LoginForm.password}}
+						</div>					
+						<button id="btnIngresar" class="btn btn-primary" type="submit">Ingresar</button>
+					</form>
+				</div>
+
+				<div class="col-md-4">				
+				</div> 
+				<div class="col-md-4 text-center">
+					<small>
+						<small><a href="#">¿Ha olvidado la contraseña?</a></small>
+					</small>
+				</div> 
+			</div>			
+			
+
+			<div class="row" style="margin:4%">
+				<div class="col-md-4 ">
+					{# Agregar Imagen #}
+					<img class="text-center" src="/media/images/yantar.jpg">
+				</div>
+				<div class="col-md-8">
+					<fieldset>
+						 <legend>
+							<h1 class="text-center">Crea una Cuenta</h1>
+						</legend>
+
+						<div>
+							<small>{{ CreateForm.errors }}</small>
+						</div>
+									
+						<form action="." class="form-horizontal" role="form" method="POST">
+							{% csrf_token %}					
+							<div class="form-group">
+
+								{% if CreateForm.username.required %}
+									<span class="required">*</span>
+								{% endif %}
+
+								<label for="lblusernamec" class="col-sm-4 control-label">
+									{{CreateForm.username.label}}								
+								</label>
+								<div class="col-sm-6">
+									{{CreateForm.username}}
+									<small class="help-inline text-muted">
+										{{CreateForm.username.help_text}}
+									</small>
+								</div>												
+							</div>	
+
+							<div class="form-group">
+								
+								{% if CreateForm.email.required %}
+										<span class="required">*</span>
+								{% endif %}
+								
+								<label for="lblemail" class="col-sm-4 control-label">
+									{{CreateForm.email.label}}								
+								</label>
+								
+								<div class="col-sm-6">
+									{{CreateForm.email}}									
+								</div>
+							</div>						
+
+							<div class="form-group">
+								{% if CreateForm.password1.required %}
+									<span class="required">*</span>
+								{% endif %}
+
+								<label for="lblpass1" class="col-sm-4 control-label">
+									{{CreateForm.password1.label}}
+								</label>
+								<div class="col-sm-6">
+									{{CreateForm.password1}}									
+								</div>
+							</div>						
+
+							<div class="form-group">
+								{% if CreateForm.password2.required %}
+									<span class="required">*</span>
+								{% endif %}
+								<label for="lblpass2" class="col-sm-4 control-label">
+									{{CreateForm.password2.label}}
+								</label>
+								<div class="col-sm-6">
+									{{CreateForm.password2}}									
+								</div>
+							</div>							
+							<button id="btnCrear" class="btn btn-success btn-lg" type="submit" style="margin-left:225px">Finalizar Registro</button>
+						</form>
+					</fieldset>
+				</div>
+			</div>		
+		</div>
+
+		<script>
+			$("#btnIngresar").click(function() {
+				$("#divAlert").show();
+			});
+		</script>
+	
+	</body>
+</html>

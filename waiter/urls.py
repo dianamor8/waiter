@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'waiter.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
+	url(r'^', include('waiter.apps.usuarios.urls')),
 	url(r'^', include('waiter.apps.home.urls')),
 	url(r'^', include('waiter.apps.producto.urls')), 
 	url(r'^', include('waiter.apps.pedido.urls')), 	
