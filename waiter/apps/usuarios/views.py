@@ -8,7 +8,8 @@ from django.http import HttpResponseRedirect
 from waiter.apps.usuarios.forms import AutenticacionUsuario, UserCreate
 from django.contrib.auth.decorators import login_required
 from waiter.settings import LOGIN_URL, LOGIN_REDIRECT_URL
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
+
 
 
 # Create your views here.
@@ -75,7 +76,10 @@ def create_user_cliente_view(request):
 	if form.is_valid():
 		username = form.clean_username()
 		password = form.clean_password2()
-		form.save() #retorna el model del objeto a guardar
+
+		cliente, iscreated = Group.objects.get_or_create(name='Cliente')
+		usuario = form.save() #retorna el model del objeto a guardar
+		usuario.groups.add(cliente)
 		user = authenticate(username=username,password=password)
 		login(request, user)
 		return HttpResponseRedirect(LOGIN_REDIRECT_URL)

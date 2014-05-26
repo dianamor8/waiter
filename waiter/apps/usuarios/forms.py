@@ -16,12 +16,7 @@ class AutenticacionUsuario(AuthenticationForm):
 	AuthenticationForm.base_fields['password'].error_messages={'required': 'La información de %s es requerida.' %AuthenticationForm.base_fields['password'].widget.attrs['placeholder']}
 
 	def clean(self):
-		datos = self.cleaned_data
-		# username = datos.get('username')
-		# password = datos.get('password')
-		# usuario = authenticate(username=username, password=password)
-		# if usuario is None:			
-		# 	raise ValidationError("Combinación de usuario/contraseña erróneo.")		
+		datos = self.cleaned_data	
 		return datos
 
     
