@@ -4,7 +4,7 @@ from waiter.apps.home.util import *
 from django.contrib.auth.models import User
 from django import forms
 
-def validarUsuario(value):
+def validarNuevoUsuario(value):
 	user = User.objects.filter(username=value)
 	if not tamanio_min(value, 3):
 		raise forms.ValidationError("El nombre de usuario debe contener al menos 3 caracteres.")

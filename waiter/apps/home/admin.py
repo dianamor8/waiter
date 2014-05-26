@@ -39,3 +39,16 @@ from django.contrib import admin
 
 ####AGREGAR MAS COSAS AL MODELOS
 #http://stackoverflow.com/questions/7027985/extending-new-user-creation-form-django
+
+#EXPRESIONES REGULARES PYTHON
+#http://zerowolf.wordpress.com/2012/09/19/expresiones-regulares-python-y-django/
+
+
+###BUENASO
+#http://www.micahcarrick.com/django-email-authentication.html
+
+###VALIDADOR CON BOOTSTRAP
+#http://runnable.com/UjXFaRolNo8iAAAI/simple-form-validation-for-python-and-django
+
+###FORMULARIO VENTANA MODAL
+#http://grokbase.com/t/gg/django-es/139qmqc2pm/formulario-ventana-modal

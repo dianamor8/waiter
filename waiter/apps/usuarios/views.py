@@ -20,16 +20,18 @@ def forms_view(request):
 	else:
 		if request.method=="GET":
 			formAutenticacion = AutenticacionUsuario()
-			#formRegistro = RegistroUsuario()
-			formRegistro = UserCreate()
+			formRegistro = UserCreate()			
 		else:
-			formAutenticacion = AutenticacionUsuario(data=request.POST, request=request)
-			#formRegistro = RegistroUsuario(request.POST)
-			formRegistro = UserCreate(request.POST)
-			if formAutenticacion.is_valid():
-				return login_view(request)
-			if formRegistro.is_valid():
-				return create_user_cliente_view(request)
+			if'btnIngresar' in request.POST:				
+				formAutenticacion = AutenticacionUsuario(data=request.POST, request=request)
+				formRegistro = UserCreate()
+				if formAutenticacion.is_valid():					
+					return login_view(request)				
+			if 'btnCrear' in request.POST:				
+				formRegistro = UserCreate(request.POST)
+				formAutenticacion = AutenticacionUsuario()			
+				if formRegistro.is_valid():									
+					return create_user_cliente_view(request)
 		ctx = {'LoginForm':formAutenticacion, 'CreateForm':formRegistro, 'mensaje':mensaje}
 		return render(request, "usuarios/login.html", ctx)
 
@@ -41,18 +43,22 @@ def login_view(request):
 		return HttpResponseRedirect(LOGIN_REDIRECT_URL)
 	else:
 		if(request.method == "POST"):			
-			form = AutenticacionUsuario(data=request.POST, request=request)						
-			if form.is_valid():				
+			form = AutenticacionUsuario(data=request.POST, request=request)
+			print "aqui entrando"
+			if form.is_valid():
 				username = form.cleaned_data["username"]
-				password = form.cleaned_data["password"]				
-				usuario = authenticate(username=username, password=password)				
-				if usuario is not None and usuario.is_active:
+				password = form.cleaned_data["password"]
+				usuario = authenticate(username=username, password=password)								
+				if usuario is not None and usuario.is_active:					
 					login(request,usuario)
 					return HttpResponseRedirect(LOGIN_REDIRECT_URL)
-				else:
-					mensaje = "usuario y/o password incorrecto"
-		form = AutenticacionUsuario()
-		ctx = {'LoginForm':form, 'mensaje':mensaje}
+				else:					
+					mensaje = "Este usuario no esta activo."
+			else:				
+				mensaje = "Combinación de usuario/contraseña erróneo."		
+		formAutenticacion = AutenticacionUsuario()
+		formRegistro = UserCreate()		
+		ctx = {'LoginForm':form, 'CreateForm':formRegistro, 'mensaje':mensaje}		
 		return render(request, "usuarios/login.html", ctx)
 
 @login_required(login_url=LOGIN_URL)
@@ -74,6 +80,10 @@ def create_user_cliente_view(request):
 		login(request, user)
 		return HttpResponseRedirect(LOGIN_REDIRECT_URL)
 	else:
-		mensaje = "La información requerida tiene datos incorrectos."	
-	ctx = {'CreateForm':form, 'mensaje':mensaje}
+		mensaje = "La información requerida tiene datos incorrectos."
+	
+	form = UserCreate()
+	formAutenticacion = AutenticacionUsuario()
+
+	ctx = {'CreateForm':form, 'LoginForm':formAutenticacion,'mensaje':mensaje}
 	return render(request, 'usuarios/login.html', ctx)

@@ -16,10 +16,30 @@
 	<body>
 
 		<div class="container">
-			<!--<div id="divAlert" class="alert alert-warning alert-dismissable" style="display: none">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				<strong>Alerta!</strong> {{mensaje}}
-			</div>-->			
+	
+			{% if LoginForm.errors or mensaje%}
+
+				<div class="alert alert-warning alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<span class="help-block">
+						{{mensaje}}
+						{% if LoginForm.username.errors %}
+							{% for error in LoginForm.username.errors %}
+								{{ error }}
+							{% endfor %}
+							<br>						
+						{% endif %}	
+						{% if LoginForm.password.errors %}
+							{% for error in LoginForm.password.errors %}
+								{{ error }}
+							{% endfor %}
+						{% endif %}
+
+						{# {% if LoginForm.non_field_errors%}#}
+					</span>					
+				</div>							
+			{% endif %}
+			
 			<div class="row form-heading">
 				<div class="col-md-4">
 					<h3 class="text-right">Identifíquese</h3>
@@ -31,7 +51,7 @@
 							{{LoginForm.username}}						
 							{{LoginForm.password}}
 						</div>					
-						<button id="btnIngresar" class="btn btn-primary" type="submit">Ingresar</button>
+						<button name="btnIngresar" class="btn btn-primary" type="submit">Ingresar</button>
 					</form>
 				</div>
 
@@ -56,33 +76,45 @@
 							<h1 class="text-center">Crea una Cuenta</h1>
 						</legend>
 
-						<div>
-							<small>{{ CreateForm.errors }}</small>
-						</div>
-									
-						<form action="." class="form-horizontal" role="form" method="POST">
-							{% csrf_token %}					
-							<div class="form-group">
+						<!--{# {% if CreateForm.errors %}
+							<div class="alert alert-warning alert-dismissable">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<small>Por favor corregir.</small>
+							</div>							
+						{% endif %} #}-->
 
-								{% if CreateForm.username.required %}
+						<form action="." class="form-horizontal" role="form" method="POST" autocomplete="off">
+							{% csrf_token %}					
+							<div class="form-group {%if CreateForm.username.errors%} has-error {% endif%} has-feedback">
+
+								{% if CreateForm.username.required %}								
 									<span class="required">*</span>
 								{% endif %}
 
 								<label for="lblusernamec" class="col-sm-4 control-label">
 									{{CreateForm.username.label}}								
-								</label>
+								</label>								
 								<div class="col-sm-6">
-									{{CreateForm.username}}
-									<small class="help-inline text-muted">
-										{{CreateForm.username.help_text}}
-									</small>
-								</div>												
+									{{CreateForm.username}}	
+
+
+									{% if CreateForm.username.errors %}
+										<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+										<span class="help-block">
+											{% for error in CreateForm.username.errors %}
+												<small>{{ error }}</small>
+											{% endfor %}
+										</span>
+									{% endif %}		
+								</div>
+								
 							</div>	
 
-							<div class="form-group">
+
+							<div class="form-group {%if CreateForm.email.errors%} has-error has-feedback {% endif%}">
 								
-								{% if CreateForm.email.required %}
-										<span class="required">*</span>
+								{% if CreateForm.email.required %}								
+									<span class="required">*</span>
 								{% endif %}
 								
 								<label for="lblemail" class="col-sm-4 control-label">
@@ -90,12 +122,20 @@
 								</label>
 								
 								<div class="col-sm-6">
-									{{CreateForm.email}}									
+									{{CreateForm.email}}
+
+									{% if CreateForm.email.errors %}
+										<span class="help-block">
+											{% for error in CreateForm.email.errors %}
+												<small>{{ error }}</small>
+											{% endfor %}
+										</span>
+									{% endif %}		
 								</div>
 							</div>						
 
-							<div class="form-group">
-								{% if CreateForm.password1.required %}
+							<div class="form-group {%if CreateForm.password1.errors%} has-error has-feedback {% endif%}">
+								{% if CreateForm.password1.required %}								
 									<span class="required">*</span>
 								{% endif %}
 
@@ -103,11 +143,18 @@
 									{{CreateForm.password1.label}}
 								</label>
 								<div class="col-sm-6">
-									{{CreateForm.password1}}									
+									{{CreateForm.password1}}
+									{% if CreateForm.password1.errors %}
+										<span class="help-block">
+											{% for error in CreateForm.password1.errors %}
+												<small>{{ error }}</small>
+											{% endfor %}
+										</span>
+									{% endif %}			
 								</div>
 							</div>						
 
-							<div class="form-group">
+							<div class="form-group {%if CreateForm.password2.errors%} has-error has-feedback {% endif%}">
 								{% if CreateForm.password2.required %}
 									<span class="required">*</span>
 								{% endif %}
@@ -115,10 +162,17 @@
 									{{CreateForm.password2.label}}
 								</label>
 								<div class="col-sm-6">
-									{{CreateForm.password2}}									
+									{{CreateForm.password2}}
+									{% if CreateForm.password2.errors %}
+										<span class="help-block">
+											{% for error in CreateForm.password2.errors %}
+												<small>{{ error }}</small>
+											{% endfor %}
+										</span>
+									{% endif %}		
 								</div>
 							</div>							
-							<button id="btnCrear" class="btn btn-success btn-lg" type="submit" style="margin-left:225px">Finalizar Registro</button>
+							<button name="btnCrear" class="btn btn-success btn-lg" type="submit" style="margin-left:225px">Finalizar Registro</button>
 						</form>
 					</fieldset>
 				</div>

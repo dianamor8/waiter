@@ -3,17 +3,31 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 from waiter.apps.usuarios.validators import *
+from django.contrib.auth import authenticate
 
 class AutenticacionUsuario(AuthenticationForm):	
 	AuthenticationForm.base_fields['username'].widget.attrs['class']='form-control'
 	AuthenticationForm.base_fields['username'].widget.attrs['placeholder']='Usuario'
+	AuthenticationForm.base_fields['username'].max_length=30
 	AuthenticationForm.base_fields['password'].widget.attrs['class']='form-control'
 	AuthenticationForm.base_fields['password'].widget.attrs['placeholder']='Contraseña'
+	AuthenticationForm.base_fields['password'].max_length=15
+	AuthenticationForm.base_fields['username'].error_messages={'required': 'La información de %s es requerida.' %AuthenticationForm.base_fields['username'].widget.attrs['placeholder']}
+	AuthenticationForm.base_fields['password'].error_messages={'required': 'La información de %s es requerida.' %AuthenticationForm.base_fields['password'].widget.attrs['placeholder']}
+
+	def clean(self):
+		datos = self.cleaned_data
+		# username = datos.get('username')
+		# password = datos.get('password')
+		# usuario = authenticate(username=username, password=password)
+		# if usuario is None:			
+		# 	raise ValidationError("Combinación de usuario/contraseña erróneo.")		
+		return datos
 
     
 class UserCreate(UserCreationForm):
 
-	username = forms.RegexField (widget=forms.TextInput(attrs={'class':'form-control'}), label = "Nombre de usuario", max_length = 30, regex = r"^[\w'\.\-\_]+$", help_text = "Menor a 30 caracteres. Permitido: letras, dígitos y -._", error_messages = {'invalid': 'Contiene caracteres no permitidos.', 'required': 'Esta información es requerida.'} ,validators=[validarNuevoUsuario])
+	username = forms.RegexField (widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Permitido: letras, dígitos y -._'}), label = "Nombre de usuario", max_length = 30, regex = r"^[\w'\.\-\_]+$", help_text = "Menor a 30 caracteres. Permitido: letras, dígitos y -._", error_messages = {'invalid': 'Contiene caracteres no permitidos.', 'required': 'Esta información es requerida.'} ,validators=[validarNuevoUsuario])
 	email = forms.EmailField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'tucuenta@ejemplo.com'}),label='Correo electrónico', required=True, error_messages={'invalid': 'Ingrese una dirección de correo válida.', 'required': 'Esta información es requerida.'}, validators=[validarEmail])
 	# Style CSS + Bootstrap
 	UserCreationForm.base_fields['password1'].widget.attrs['class']='form-control'	
