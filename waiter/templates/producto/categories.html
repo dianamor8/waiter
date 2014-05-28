@@ -1,24 +1,78 @@
 {% extends "base/base.html" %}
 {% block title %}
-	Lista de categorias
+	Categoria de productos
 {% endblock title %}
 
+<!--{% block encabezado %}
+	Categoría
+{% endblock encabezado %}-->
+
 {% block content %}
-	{% if categorias %}
-		<table style="width:300px", border="3px">
-			<tr>
-				<td>Número</td>
-				<td>Nombre</td>
-			</tr>
-		{% for c in  categorias %}
-			<!--<p>{{c.nombre}}</p>-->
-			<tr>
-				<td>{{c.id}}</td>
-				<td>{{c.nombre}}</td>
-			</tr>
-		{% endfor %}
-		</table> 
-	{% else %}
-			<h2>no hay categorias</h2>
-	{% endif %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="container-fluid">
+				<a data-target="#categorieModal" data-toggle="modal" class="btn btn-primary">
+					Agregar nueva categoría
+				</a>				
+			</div>
+		</div><!--panel-heading-->		
+		<div class="panel-body">
+			<div class="table-responsive">
+					<table class="table table-striped table-condensed"> 
+						<thead>
+							<th>Número</th>
+							<th>Nombre</th>
+							<th>Acción</th>							
+						</thead>
+					
+						<tbody>
+							{% if categorias %}
+								{% for c in  categorias %}						
+									<tr>
+										<td>{{c.id}}</td>
+										<td>{{c.nombre}}</td>									
+										<td>
+											<a href="#" class="btn btn-default btn-xs"> Editar
+												<span class="glyphicon glyphicon-pencil"></span>
+											</a>	
+										</td>
+									</tr>
+								{% endfor %}
+							{% else %}
+								<tr>
+									<td colspan = "4">Aún no se han registrado categorías.</td>
+								</tr>
+							{% endif %}
+						</tbody>				
+					</table> 				
+			</div>			
+		</div><!--panel-body-->
+	</div><!--panel-default-->
+
+	<div class="modal fade" id="categorieModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3>Agregar categoría</h3>
+				</div>
+				<div class="modal-body">					
+					{% csrf_token %}
+					<form action="{%url "vista_add_categorie"%}" method="post" class="well">
+						{% csrf_token %}
+						{{CategorieForm.label}}
+					</form>
+				</div>
+				<div class="modal-footer">
+					<input class="btn btn-primary" type="submit" value="Save" />
+					<input name="cancel" class="btn" type="submit" value="Cancel"/>
+				</div>
+			</div>	
+		</div>		
+	</div>
+
+
+{# http://stackoverflow.com/questions/11276100/how-do-i-insert-a-django-form-in-twitter-bootstrap-modal-window #}
+	
+
 {% endblock content %}

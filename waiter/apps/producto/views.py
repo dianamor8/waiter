@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.template import RequestContext
 from waiter.apps.producto.models import Producto, ESTADO_CHOICES, Categoria, AreaProduccion
-from waiter.apps.producto.forms import addProductForm
+from waiter.apps.producto.forms import addProductForm, addCategoriaForm
 from django.http import HttpResponseRedirect
+from waiter.settings import LOGIN_URL, LOGIN_REDIRECT_URL
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 # Nombres de views en ingles
@@ -54,14 +56,32 @@ def add_product_view(request):
 	else:
 		return HttpResponseRedirect('/')
 
+@login_required(login_url=LOGIN_URL)
+def add_categorie_view(request):	
+	mensaje=""
+	if request=="POST":
+		CategorieForm = addCategoriaForm(request)
+		if CategorieForm.is_valid():
+			CategorieForm.save()
+			print "##paso aqui"
+			return HttpResponseRedirect("producto/categories.html")			
+		else:
+			mensaje = "El formulario contiene errores."
+	print "aqui"
+	CategorieForm = addCategoriaForm()
+	context= {'CategorieForm':CategorieForm, 'mensaje':mensaje}
+	return render(request, "producto/categories.html", context)
+
+@login_required(login_url=LOGIN_URL)
 def categories_view(request):
 	if request.user.is_authenticated():
 		cat= Categoria.objects.all()
 		ctx= {'categorias':cat}
 		return render(request,'producto/categories.html',ctx)
 	else:
-		return HttpResponseRedirect('/')
+		return HttpResponseRedirect(LOGIN_REDIRECT_URL)
 
+@login_required(login_url=LOGIN_URL)
 def areas_de_produccion_view(request):
 	if request.user.is_authenticated():	
 		areas= AreaProduccion.objects.all()

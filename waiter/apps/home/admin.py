@@ -52,3 +52,10 @@ from django.contrib import admin
 
 ###FORMULARIO VENTANA MODAL
 #http://grokbase.com/t/gg/django-es/139qmqc2pm/formulario-ventana-modal
+#http://stackoverflow.com/questions/11276100/how-do-i-insert-a-django-form-in-twitter-bootstrap-modal-window
+
+
+
+###DOCUMENTACION DJANGO 
+#https://docs.djangoproject.com/en/1.6/topics/forms/
+#https://docs.djangoproject.com/en/1.6/topics/forms/modelforms/

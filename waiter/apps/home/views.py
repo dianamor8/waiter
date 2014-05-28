@@ -16,6 +16,7 @@ def index_view(request):
 	if request.user.is_authenticated():
 		return render(request, 'home/inicio.html')
 	else:		
+		# Se redirecciona al carousel
 		return render(request, 'home/index.html')
 
 def carousel_view(request):
