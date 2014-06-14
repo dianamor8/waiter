@@ -5,7 +5,7 @@ from django.db import models
 # Create your models here.
 
 class Categoria(models.Model):
-	nombre = models.CharField(max_length=200, help_text='Agrege el nombre de la categoría')	
+	nombre = models.CharField(max_length=200, help_text='Agregue el nombre de la categoría')	
 	class Meta:
 		db_table = ('Categoria')
 		verbose_name = ('Categoría')

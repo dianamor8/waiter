@@ -1,0 +1,12 @@
+{%csrf_token%}
+{% for form in form_add_categoria%}
+	<div class="form-group">
+		<label class="control-label col-sm-3 center">
+			{{form.label}}
+		</label>
+		<div class="col-sm-8">
+			{{form}}
+			<p class="help-block small">{{form.help_text}}</p>
+		</div>				
+	</div>
+{%endfor%}

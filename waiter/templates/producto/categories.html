@@ -1,4 +1,8 @@
 {% extends "base/base.html" %}
+{% block extrajs %}
+	<script src="/media/js/products.js"></script>
+{% endblock extrajs %}
+{% load tags %}
 {% block title %}
 	Categoria de productos
 {% endblock title %}
@@ -31,10 +35,10 @@
 									<tr>
 										<td>{{c.id}}</td>
 										<td>{{c.nombre}}</td>									
-										<td>
-											<a href="#" class="btn btn-default btn-xs"> Editar
-												<span class="glyphicon glyphicon-pencil"></span>
-											</a>	
+										<td>											
+											<a data-target="#categorieModal" class="btn btn-default btn-xs call" data-toggle="modal" data-id="{{c.id}}">
+												<span class="glyphicon glyphicon-pencil"></span> Actualizar
+											</a>
 										</td>
 									</tr>
 								{% endfor %}
@@ -49,6 +53,7 @@
 		</div><!--panel-body-->
 	</div><!--panel-default-->
 
+
 	<div class="modal fade" id="categorieModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -56,23 +61,43 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h3>Agregar categoría</h3>
 				</div>
+				<div class="modal-body">										
+					<form id="add_categorie_form" method="post" class="form-horizontal left" data-clave="1">
+						{%add_categoria 2%} 
+						<div id="div-form-group"class="form-group">
+							<div class="col-sm-offset-3 col-sm-4">
+							{% if add_categoria.nombre%}
+								<input id='editar' type="submit" value='Actualizar' class='btn btn-primary'>						
+								<a data-target="#confirmar" data-toggle="modal" class="btn btn-danger">Eliminar</a>
+							{% else %}
+								<input id='crear' type="submit" value='Guardar' class='btn btn-primary'>
+							{% endif %}																			
+							<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						</div>													
+						{# http://paltman.com/2012/08/23/twitter-bootstrap-and-ajax/ #}
+					</div>
+					</form>					
+				</div>				
+			</div>	
+		</div>		
+	</div>	
+
+
+
+	<div class="modal fade" id="confirmar">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				
 				<div class="modal-body">					
-					{% csrf_token %}
-					<form action="{%url "vista_add_categorie"%}" method="post" class="well">
-						{% csrf_token %}
-						{{CategorieForm.label}}
-					</form>
+					¿Esta seguro de que desea eliminar?.
+					Los productos de ésta categoría tambien se eliminarán.					
 				</div>
-				<div class="modal-footer">
-					<input class="btn btn-primary" type="submit" value="Save" />
+				<div class="modal-footer">					
+					<input type="submit" class="btn btn-danger" value="Eliminar">
 					<input name="cancel" class="btn" type="submit" value="Cancel"/>
 				</div>
 			</div>	
 		</div>		
-	</div>
-
-
-{# http://stackoverflow.com/questions/11276100/how-do-i-insert-a-django-form-in-twitter-bootstrap-modal-window #}
-	
+	</div>	
 
 {% endblock content %}

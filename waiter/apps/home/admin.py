@@ -59,3 +59,26 @@ from django.contrib import admin
 ###DOCUMENTACION DJANGO 
 #https://docs.djangoproject.com/en/1.6/topics/forms/
 #https://docs.djangoproject.com/en/1.6/topics/forms/modelforms/
+
+
+# MODAL FORMS
+#http://www.micahcarrick.com/ajax-form-submission-django.html
+#http://zmsmith.com/2010/09/easy-ajax-forms-with-fancybox/
+
+#NO SE PERO BUENO
+#http://claudiomelendrez.wordpress.com/2013/04/03/ajax-django-part-1/
+
+
+#ARTICULO CHEVERISIMO PARA MODAL FORMS
+#http://dmorgan.info/posts/django-views-bootstrap-modals/ 
+#http://www.abidibo.net/blog/2014/05/26/how-implement-modal-popup-django-forms-bootstrap/
+
+
+
+#ajax
+#http://paltman.com/2012/08/23/twitter-bootstrap-and-ajax/
+#https://gist.github.com/havvg/3226804
+
+
+#TEMPLATE TAGS
+#http://vanderwijk.info/blog/adding-css-classes-formfields-in-django-templates/

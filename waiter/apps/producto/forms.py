@@ -13,7 +13,7 @@ class addProductForm(forms.Form):
 	def clean(self):
 		return self.cleaned_data
 
-class addCategoriaForm(ModelForm):
+class addCategoriaForm(ModelForm):	
 	class Meta:
 		model = Categoria
 		# fields = ("nombre")

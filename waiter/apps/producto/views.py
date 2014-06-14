@@ -68,7 +68,7 @@ def add_categorie_view(request):
 		else:
 			mensaje = "El formulario contiene errores."
 	print "aqui"
-	CategorieForm = addCategoriaForm()
+	CategorieForm = addCategoriaForm(instance=Categoria)
 	context= {'CategorieForm':CategorieForm, 'mensaje':mensaje}
 	return render(request, "producto/categories.html", context)
 

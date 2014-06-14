@@ -108,7 +108,7 @@ MEDIA_URL = '/media/'
 
 
 #PARA REDIRECCIONAR EL LOGIN
-LOGIN_URL = '/usuarios/login/'
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 
 
