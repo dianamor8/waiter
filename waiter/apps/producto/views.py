@@ -15,7 +15,7 @@ def products_view(request):
 		no_activo = ESTADO_CHOICES[1][0]
 		pro = Producto.objects.filter(estado=activo)
 		ctx = {'productos':pro}
-		return render(request, 'producto/products.html',ctx)
+		return render(request, 'producto/product/products.html',ctx)
 	else:
 		return HttpResponseRedirect('/')
 	
@@ -52,7 +52,7 @@ def add_product_view(request):
 		else: #SI ES GET	
 			formulario 	= addProductForm()
 			ctx = {'formulario':formulario}
-			return render(request,'producto/addProduct.html',ctx)
+			return render(request,'producto/product/add_product.html',ctx)
 	else:
 		return HttpResponseRedirect('/')
 
@@ -77,7 +77,7 @@ def categories_view(request):
 	if request.user.is_authenticated():
 		cat= Categoria.objects.all()
 		ctx= {'categorias':cat}
-		return render(request,'producto/categories.html',ctx)
+		return render(request,'producto/categorie/categories.html',ctx)
 	else:
 		return HttpResponseRedirect(LOGIN_REDIRECT_URL)
 
@@ -86,7 +86,7 @@ def areas_de_produccion_view(request):
 	if request.user.is_authenticated():	
 		areas= AreaProduccion.objects.all()
 		ctx= {'areas':areas}
-		return render(request,'producto/areas.html',ctx)
+		return render(request,'producto/productionArea/productionAreas.html',ctx)
 	else:
 		return HttpResponseRedirect('/')
 	

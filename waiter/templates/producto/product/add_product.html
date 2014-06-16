@@ -1,0 +1,36 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	{% if object.id %}
+		Actualizar producto		
+	{% else %}
+		Agregar nuevo producto
+	{% endif %}
+{% endblock title %}
+
+{% block content %}
+Nuevo Producto
+	{% if user.is_authenticated %}
+		<form action="." class="form-horizontal" role="form" method="POST" autocomplete="off">		
+			{% csrf_token %}
+			{% for form in formulario %}
+
+				<div class="form-group">
+					<label class="control-label col-sm-3 center">
+						{{form.label}}
+					</label>
+					<div class="col-sm-8">
+						{{form}}
+						<p class="help-block small">{{form.help_text}}</p>
+					</div>
+				</div>
+			{% endfor %}			
+			<input type="submit" value="Grabar">
+			<input type="reset" value= "Limpiar">
+		</form>
+		<br>
+		{{informacion}}	
+		<br>
+		<a href="{%url "vista_products"%}">Regresar</a>
+	{% endif %}
+{% endblock content %}
