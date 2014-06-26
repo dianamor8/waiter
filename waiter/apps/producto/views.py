@@ -90,5 +90,6 @@ def areas_de_produccion_view(request):
 	else:
 		return HttpResponseRedirect('/')
 	
+	
 
 		
