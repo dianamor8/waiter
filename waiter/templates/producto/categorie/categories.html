@@ -1,6 +1,7 @@
 {% extends "base/base.html" %}
 {% block extrajs %}
 	<script src="/media/js/products.js"></script>
+	<script src="/media/js/jquery.form.min.js"></script>
 {% endblock extrajs %}
 {% load tags %}
 {% block title %}
@@ -27,7 +28,8 @@
 						<thead>
 							<th>Número</th>
 							<th>Nombre</th>
-							<th>Acción</th>							
+							<th>Actualizar</th>
+							<th>Eliminar</th>
 						</thead>
 					
 						<tbody>
@@ -36,33 +38,45 @@
 										<td>{{c.id}}</td>
 										<td>{{c.nombre}}</td>									
 										<td>											
-											<a data-target="#editCategorieModal" class="btn btn-default btn-xs call" data-toggle="modal" data-id="{{c.id}}" >
-												<span class="glyphicon glyphicon-pencil"></span> Actualizar
+											<a data-target="#editCategorieModal{{c.id}}" class="btn btn-success call btn-xs" data-toggle="modal" data-id="{{c.id}}" >
+												<span class="glyphicon glyphicon-pencil"></span> Editar
 											</a>
-										</td>
-											<div class="modal fade" id="editCategorieModal">
-												<div class="modal-dialog">
+										</td>																		
+										<td>											
+											<a href="#deleteCategorieModal"  data-toggle="modal" class="btn btn-danger btn-xs delete" role="button" data-id="{{c.id}}" data-nombre="{{c.nombre}}" id="{{c.id}}">
+												<span class="glyphicon glyphicon-trash"></span> Eliminar
+											</a>
+										</td>	
+									</tr>	
+									<div class="modal fade dialogo" id="editCategorieModal{{c.id}}">
+											<div class="modal-dialog">
 													<div class="modal-content">
-														<div class="modal-header">
-															<button type="button" class="close" data-dismiss="modal">&times;</button>
-															<h3>Actualizar categoría</h3>
-														</div>
+														
 														<div class="modal-body">										
-															<form id="update_categorie_form" method="post" class="form-horizontal left">
-																{%add_categoria c.id%}
-																<div class="control-group">
-																	<div class='controls'>
-																		<input id='actualizar' type="submit" value='Actualizar' class='btn btn-primary'>
-																		<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>	
-																	</div>							
-																</div>					
+															<div class="modal-header">
+																<button type="button" class="close" data-dismiss="modal">&times;</button>
+																<h3>Actualizar categoría</h3>
 															</div>
-															</form>					
-														</div>				
-													</div>	
-												</div>		
-											</div>
-									</tr>									
+															<br>
+															<form id="update_categorie_form" method="post" class="form-horizontal left formulario" data-id="{{c.id}}">
+																{%csrf_token%}
+																{%add_categoria c.id%}																
+																<br>
+																<br>
+																<div class="modal-footer">
+																	<div class="control-group col-sm-offset-4">
+																		<div class='controls'>
+																			<input id='actualizar' type="submit" value='Actualizar' class='btn btn-primary'>
+																			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>	
+																		</div>							
+																	</div>																				
+																</div>
+																
+														</form>					
+													</div>
+												</div>				
+											</div>	
+									</div>												
 								{% endfor %}							
 						</tbody>				
 					</table> 				
@@ -73,7 +87,6 @@
 		</div><!--panel-body-->
 	</div><!--panel-default-->
 
-
 	<div class="modal fade" id="categorieModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -83,6 +96,7 @@
 				</div>
 				<div class="modal-body">										
 					<form id="add_categorie_form" method="post" class="form-horizontal left">
+						{%csrf_token%}
 						{%add_categoria%}
 						<div class="control-group">
 							<div class='controls'>
@@ -97,22 +111,26 @@
 		</div>		
 	</div>	
 
-
-
-	<div class="modal fade" id="confirmar">
+	<div id="deleteCategorieModal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">		
 		<div class="modal-dialog">
 			<div class="modal-content">
-				
-				<div class="modal-body">					
-					¿Esta seguro de que desea eliminar?.
-					Los productos de ésta categoría tambien se eliminarán.					
+				<div class="modal-header">
+					<h3 id= "myModalLabel">Eliminar Producto</h3>
 				</div>
-				<div class="modal-footer">					
-					<input type="submit" class="btn btn-danger" value="Eliminar">
-					<input name="cancel" class="btn" type="submit" value="Cancel"/>
+				<div class="modal-body">
+					<p>¿Realmente desea eliminar la categoría <span id ="modal_name"></span>?</p>
 				</div>
-			</div>	
-		</div>		
+				<div class="modal-footer">
+					<form method="POST" id="frmEliminar">
+						{% csrf_token %}
+						<input type="hidden" id="modal_idCategoria" name="categoria_id">
+						<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+						<button type="submit" class="btn btn-danger">Eliminar</button>
+					</form>
+
+				</div>
+			</div>
+		</div>
 	</div>	
 
 {% endblock content %}

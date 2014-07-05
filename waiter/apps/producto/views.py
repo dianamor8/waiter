@@ -75,7 +75,7 @@ def add_categorie_view(request):
 @login_required(login_url=LOGIN_URL)
 def categories_view(request):
 	if request.user.is_authenticated():
-		cat= Categoria.objects.all()
+		cat= Categoria.objects.order_by('pk')
 		ctx= {'categorias':cat}
 		return render(request,'producto/categorie/categories.html',ctx)
 	else:

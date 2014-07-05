@@ -5,6 +5,7 @@ urlpatterns = patterns('waiter.apps.producto',
 	url(r'^add/product/$', 'views.add_product_view',name = 'vista_add_product'),	
 	url(r'^add/categorie/$', 'views.add_categorie_view',name = 'vista_add_categorie'),
 	url(r'^add/new/categorie/$', 'rest.add_categorie_ajax',name = 'vista_add_new_categorie'),
+	url(r'^update/categorie/$', 'rest.update_categorie_ajax',name = 'vista_update_categorie'),
 	url(r'^categories/$', 'views.categories_view',name = 'vista_categories'),
 	url(r'^areas/$', 'views.areas_de_produccion_view',name = 'vista_areas_produccion'),
 )
