@@ -82,3 +82,8 @@ from django.contrib import admin
 
 #TEMPLATE TAGS
 #http://vanderwijk.info/blog/adding-css-classes-formfields-in-django-templates/
+
+#Codigo para eliminar
+#http://blog.csdn.net/wcc526/article/details/14488057
+#http://stackoverflow.com/questions/18239703/jquery-ajax-post-re-sent-as-get-using-django
+#http://www.sitepoint.com/30-jquery-forms/
