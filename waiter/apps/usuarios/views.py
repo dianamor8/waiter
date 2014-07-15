@@ -91,3 +91,11 @@ def create_user_cliente_view(request):
 
 	ctx = {'CreateForm':form, 'LoginForm':formAutenticacion,'mensaje':mensaje}
 	return render(request, 'usuarios/login.html', ctx)
+
+
+@login_required(login_url=LOGIN_URL)
+def categories_product_view(request, id_categorie=None):
+	print id_categorie		
+	return render(request, 'usuarios/login.html')
+
+

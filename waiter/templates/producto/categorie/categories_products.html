@@ -1,0 +1,30 @@
+{% extends "base/base.html" %}
+{% block extrajs %}
+	<script src="/media/js/products.js"></script>
+	<script src="/media/js/jquery.form.min.js"></script>
+{% endblock extrajs %}
+{% block title %}
+	Lista de Productos
+{% endblock title %}
+{% block content %}
+	<ul class="nav nav-tabs" role="tablist">
+		{% if categories %}
+			{% for categorie in categories %}			
+				{% if categorie.id == id_categorie %}
+					<li class="active"><a href="#">{{categorie.nombre}}</a></li>					
+				{% else %}
+					<li><a href="#">{{categorie.nombre}}</a></li>			
+				{% endif %}			
+			{% endfor %}
+		{% else %}
+			<h3>No hay categorías registradas.</h3>
+			<a href="{%url "vista_categories"%}" class="btn btn-primary"> Agregar categoría.</a>
+		{% endif %}
+		
+	</ul>
+	<br>
+	{% for p in products %}
+		{{p.nombre}} <br>
+	{% endfor %}
+	
+{% endblock content %}

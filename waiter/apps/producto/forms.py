@@ -15,17 +15,6 @@ class addProductForm(forms.Form):
 		return self.cleaned_data
 
 class addCategoriaForm(ModelForm):	
-
-	# def clean_nombre(self):
-	# 	# datos = self.cleaned_data		
-	# 	# nombre = datos.get('nombre')
-	# 	# id_categoria = datos.get('pk')
-	# 	# categoria = Categoria.objects.filter(nombre=nombre)	
-
-	# 	# 	if categoria:
-	# 	# 		raise forms.ValidationError("Ya existe una categoría con ese nombre.")		
-	# 	return nombre
-
 	class Meta:
 		model = Categoria
 		error_messages = {
@@ -34,6 +23,12 @@ class addCategoriaForm(ModelForm):
             },
         }		
 	
-class addAreaProduccion(ModelForm):	
+class addAreaProduccionForm(ModelForm):	
 	class Meta:
-		model = AreaProduccion		
+		model = AreaProduccion
+		error_messages={
+			'nombre':{
+				'required': u"Este valor no puede estar vacío.",
+			},
+
+		}

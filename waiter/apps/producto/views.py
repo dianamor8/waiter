@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.template import RequestContext
 from waiter.apps.producto.models import Producto, ESTADO_CHOICES, Categoria, AreaProduccion
@@ -56,21 +57,6 @@ def add_product_view(request):
 	else:
 		return HttpResponseRedirect('/')
 
-@login_required(login_url=LOGIN_URL)
-def add_categorie_view(request):	
-	mensaje=""
-	if request=="POST":
-		CategorieForm = addCategoriaForm(request)
-		if CategorieForm.is_valid():
-			CategorieForm.save()
-			print "##paso aqui"
-			return HttpResponseRedirect("producto/categories.html")			
-		else:
-			mensaje = "El formulario contiene errores."
-	print "aqui"
-	CategorieForm = addCategoriaForm(instance=Categoria)
-	context= {'CategorieForm':CategorieForm, 'mensaje':mensaje}
-	return render(request, "producto/categories.html", context)
 
 @login_required(login_url=LOGIN_URL)
 def categories_view(request):
@@ -84,12 +70,28 @@ def categories_view(request):
 @login_required(login_url=LOGIN_URL)
 def areas_de_produccion_view(request):
 	if request.user.is_authenticated():	
-		areas= AreaProduccion.objects.all()
+		areas= AreaProduccion.objects.order_by('pk')
 		ctx= {'areas':areas}
 		return render(request,'producto/productionArea/productionAreas.html',ctx)
 	else:
-		return HttpResponseRedirect('/')
+		return HttpResponseRedirect(LOGIN_REDIRECT_URL)
 	
 	
 
+@login_required(login_url=LOGIN_URL)
+def categories_product_view(request, id_categorie=None):
+	categories = Categoria.objects.order_by('nombre')
+	if id_categorie is None:
+		if categories:
+			categorieaux = categories[0]
+			id_categorie= int(categorieaux.id)
+			products = Producto.objects.filter(categoria=id_categorie).order_by('nombre')	
+			ctx = {'id_categorie': int(id_categorie), 'products':products, 'categories':categories}
+		else:
+			mensaje= "Aún no hay categorías registradas."
+			ctx = {'mensaje':mensaje}						
+	else:
+		products = Producto.objects.filter(categoria=id_categorie).order_by('nombre')	
+		ctx = {'id_categorie': int(id_categorie), 'products':products, 'categories':categories}
+	return render(request, 'producto/categorie/categories_products.html', ctx)
 		

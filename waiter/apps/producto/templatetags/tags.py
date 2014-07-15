@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 from django import template
-from waiter.apps.producto.forms import addCategoriaForm,addAreaProduccion
+from waiter.apps.producto.forms import addCategoriaForm,addAreaProduccionForm
 from waiter.apps.producto.models import Categoria, AreaProduccion
 
 register = template.Library()
@@ -22,12 +22,12 @@ def add_categoria(context, pk=None):
 @register.inclusion_tag('producto/productionArea/add_production_area_form.html', takes_context=True)
 # @register.filter(name='addcss')
 def add_area(context, pk=None):	
-	form = addAreaProduccion()	
+	form = addAreaProduccionForm()	
 	if pk is not None:				
 		area = AreaProduccion.objects.filter(id=pk)
 		if area:			
 			area = AreaProduccion.objects.get(id=pk)		 				
-			form = addAreaProduccion(instance=area)		
+			form = addAreaProduccionForm(instance=area)		
 			
 	form.fields['nombre'].widget.attrs = {'class':'form-control'}	
 	contexto = {'form_add_production_area': form}	
