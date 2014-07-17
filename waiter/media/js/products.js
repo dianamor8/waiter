@@ -1,4 +1,3 @@
-var id_modal;
 $(document).ready(function() {
 	
 	// MÉTODOS DEPURADOS

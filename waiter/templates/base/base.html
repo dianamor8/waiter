@@ -8,7 +8,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Bootstrap CSS -->
 		<link href="/media/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">		
-		<link href="/media/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">		
+		<link href="/media/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">				
+		{% block extracss %}			
+		{% endblock extracss %}
 		<script src="/media/js/jquery.js"></script>
 		<script src="/media/js/jquery.min.js"></script>
 		<script src="/media/bootstrap/js/bootstrap.js"></script>
@@ -21,17 +23,28 @@
 
 		<div class="container-fluid" style="padding-top:5%">
 			<div class="row">
-				<div class="col-sm-3 col-md-2 sidebar">
-					{% include "base/sidebar.html" %}
-				</div>				
-				<div class="col-sm-9 col-md-10 main">
-					<h1 class="page-header text-center">
-						{% block encabezado %}						
-						{% endblock encabezado %}
-					</h1>
-					{% block content %}
-					{% endblock content %}
-				</div>
+				
+
+				{% if sidebar == 'administracion' %}
+						<!--{#{% include "base/sidebar_administracion.html" %}#}-->
+					{% block panel_superior %}					
+					{% endblock panel_superior %}																		
+				{% else %}						
+					<div class="col-sm-3 col-md-2 sidebar">
+						{% include "base/sidebar.html" %}
+					</div>				
+					<div class="col-sm-9 col-md-10 main">
+						<h1 class="page-header text-center">
+							{% block encabezado %}						
+							{% endblock encabezado %}
+						</h1>
+						{% block content %}
+						{% endblock content %}
+					</div>					
+				{% endif %}
+				
+				
+				
 			</div><!--row-->			
 		</div><!--container-fluid-->
 		<!--<div class="container" style="padding-top:5%">

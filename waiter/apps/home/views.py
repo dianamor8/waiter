@@ -4,6 +4,9 @@ from waiter.apps.home.forms import ContactForm, LoginForm
 from django.core.mail import EmailMultiAlternatives #Enviamos html
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponseRedirect
+from waiter.settings import LOGIN_URL, LOGIN_REDIRECT_URL
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
@@ -53,3 +56,12 @@ def contact_view(request):
 	ctx = {"form":formulario, 'email':email, 'titulo':titulo, 'texto':texto, 'info_enviado':info_enviado}
 	return render(request, "home/contact.html",ctx)
 
+@login_required(login_url=LOGIN_URL)
+def panel_administracion_view(request):
+	ctx= {'sidebar':'administracion'}
+	return render(request, 'home/panel_administracion/panel_administracion.html', ctx)
+
+@login_required(login_url=LOGIN_URL)
+def configurations_view(request):
+	ctx= {'sidebar':'administracion'}
+	return render(request, 'home/panel_administracion/configurations.html',ctx)

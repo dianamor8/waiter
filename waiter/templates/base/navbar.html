@@ -5,11 +5,16 @@
 				<span class="sr-only"> Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>				
+				<span class="icon-bar"></span>		
 			</button>			
-			<a href="{%url "vista_principal"%}" class="navbar-brand">Waiter</a>
+			<a href="{%url "vista_principal"%}" class="navbar-brand">Waiter</a>			
 		</div>
 		<div class="navbar-collapse collapse">
+			<!--CONSTRUIR AQUI UN MÉTODO PARA AGREGAR LOS NAV BAR SEGUN EL GRUPO DE USUARIO-->
+			<ul class="nav navbar-nav">
+				<li><a href="{%url "vista_panel_administracion"%}">Panel de Administración</a></li>
+			</ul>
+
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
