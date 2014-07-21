@@ -6,7 +6,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponseRedirect
 from waiter.settings import LOGIN_URL, LOGIN_REDIRECT_URL
 from django.contrib.auth.decorators import login_required
-
+from waiter.apps.producto.models import Producto
 
 # Create your views here.
 
@@ -62,6 +62,7 @@ def panel_administracion_view(request):
 	return render(request, 'home/panel_administracion/panel_administracion.html', ctx)
 
 @login_required(login_url=LOGIN_URL)
-def configurations_view(request):
+			#CONFIG
+def configurations_view(request):	
 	ctx= {'sidebar':'administracion'}
 	return render(request, 'home/panel_administracion/configurations.html',ctx)
