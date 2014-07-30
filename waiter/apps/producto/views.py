@@ -76,6 +76,9 @@ def areas_de_produccion_view(request):
 	else:
 		return HttpResponseRedirect(LOGIN_REDIRECT_URL)
 	
+def areasjairo(request):
+	return render(request,'producto/areas.html')
+
 	
 
 @login_required(login_url=LOGIN_URL)

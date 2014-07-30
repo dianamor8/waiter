@@ -18,5 +18,7 @@ urlpatterns = patterns('waiter.apps.producto',
 	url(r'^new/area/$', 'rest.add_area_ajax',name = 'vista_add_new_area'),
 	url(r'^update/area/$', 'rest.update_area_ajax',name = 'vista_update_area'),
 	url(r'^delete/area/$', 'rest.delete_area_ajax',name = 'vista_delete_area'),	
+	#PRUEBA
+	url(r'^jairo/$', 'views.areasjairo',name = 'vista_jairo'),
 )
 

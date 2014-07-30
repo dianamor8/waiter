@@ -44,8 +44,7 @@ def login_view(request):
 		return HttpResponseRedirect(LOGIN_REDIRECT_URL)
 	else:
 		if(request.method == "POST"):			
-			form = AutenticacionUsuario(data=request.POST, request=request)
-			print "aqui entrando"
+			form = AutenticacionUsuario(data=request.POST, request=request)			
 			if form.is_valid():
 				username = form.cleaned_data["username"]
 				password = form.cleaned_data["password"]

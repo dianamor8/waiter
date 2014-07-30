@@ -87,3 +87,6 @@ from django.contrib import admin
 #http://blog.csdn.net/wcc526/article/details/14488057
 #http://stackoverflow.com/questions/18239703/jquery-ajax-post-re-sent-as-get-using-django
 #http://www.sitepoint.com/30-jquery-forms/
+
+#HEROKU
+#http://amatellanes.wordpress.com/2014/02/25/django-heroku-desplegando-una-aplicacion-django-en-heroku/

@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'waiter.apps.producto',
     'waiter.apps.home',
     'waiter.apps.pedido',
+    'waiter.apps.conexiones',
     'waiter.apps.webservices.wsProductos',
 )
 
@@ -62,6 +63,8 @@ WSGI_APPLICATION = 'waiter.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
+DATABASE_ROUTERS = ['waiter.router.MysqlRouter',]
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -73,11 +76,11 @@ DATABASES = {
     },
     'mysql': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD':'',
-        'HOST':'',
-        'PORT':'',
+        'NAME': 'Infact',
+        'USER': 'root',
+        'PASSWORD':'root',
+        'HOST':'127.0.0.1',
+        'PORT':'3306',
     }
 }
 

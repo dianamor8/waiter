@@ -1,4 +1,91 @@
 {% extends "home/panel_administracion/panel_administracion.html" %}
 {% block contenido %}
-holias	
+<div class="container">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">			
+			<ul class="nav nav-tabs" role="tablist">
+			  <li><a href="#fuentedatos">Fuente de Datos</a></li>
+			  <li><a href="#informacion">Información general</a></li>
+			  <li><a href="#estadistica">Estadísticas</a></li>
+			</ul>
+			<br>
+
+			<div class="contenedor">
+				<div class="contenido" id="fuentedatos">					
+					<form class="form-horizontal" role="form">
+						{% csrf_token %}					
+						<div class="form-group">
+							<label class="control-label col-sm-2">
+								{{form_conexion.fuente.label}}
+							</label>
+							<div class="col-sm-6">
+								{{form_conexion.fuente}}
+								<p class="help-block small">{{form_conexion.help_text}}</p>			
+							</div>				
+						</div>
+
+						<div class="formulario" id="localdb">
+							local
+						</div>						
+						<div class="formulario" id="conexiondb">
+							<div class="form-group">
+								<label for="inputname" class="col-sm-2 control-label">Base de Datos</label>
+								<div class="col-sm-6">
+									<input type="namedb" class="form-control" id="inputname" placeholder="Nombre de la base de datos.">
+								</div>
+							</div>
+							<div>
+								<label>hola</label>
+								<div class="col-sm-2">
+								<input type="text" class="form-control" > 
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputuser" class="col-sm-2 control-label">Usuario</label>
+								<div class="col-sm-6">
+									<input type="userdb" class="form-control" id="inputuser" placeholder="Usuario de acceso.">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputpassword" class="col-sm-2 control-label">Contraseña</label>
+								<div class="col-sm-6">
+									<input type="passworddb" class="form-control" id="inputpassword" placeholder="Contraseña de acceso.">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputhost" class="col-sm-2 control-label">Equipo</label>
+								<div class="col-sm-6">
+									<input type="hostdb" class="form-control" id="inputhost" placeholder="Dirección host del equipo.">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputport" class="col-sm-2 control-label">Puerto</label>
+								<div class="col-sm-6">
+									<input type="portdb" class="form-control" id="inputport" placeholder="Puerto de conexión.">
+								</div>
+							</div>
+						</div>							
+						
+						<div class="formulario" id="webservicesdb">
+							ws
+						</div>	
+					<!--http://carlospc.net/blog/menu-tipo-pestanas-tab-con-jquery-y-css/
+					http://bootsnipp.com/forms?version=3
+					http://www.w3schools.com/tags/tag_fieldset.asp
+					AGREGAR AQUI EL FORMULARIO-->
+					
+
+					</form>
+				</div>
+				<div class="contenido" id="informacion">
+					PANEL DE INFORMACION
+				</div>
+				<div class="contenido" id="estadistica">
+					PANEL DE ESTADISTICA
+				</div>				
+			</div>			
+		</div>		
+	</div>
+</div>
+
 {% endblock contenido %}
