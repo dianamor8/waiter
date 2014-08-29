@@ -30,7 +30,7 @@ ESTADO_CHOICES = (
 class Conexion(models.Model):	
 	fuente = models.CharField(choices=CONEXION_CHOICES, max_length=2, unique=True)
 	estado = models.CharField(choices=ESTADO_CHOICES, max_length=2)
-	descripcion = models.CharField(max_length=100)
+	configurado = models.BooleanField(default=False)
 	class Meta:		
 		db_table = ('Conexion')
 		verbose_name= ('Conexión')		
@@ -38,15 +38,23 @@ class Conexion(models.Model):
 	def __unicode__(self):
 		return self.fuente
 
+MYSQL = 0	
+POSTGRESQL = 1
+BASES_CHOICES = (
+	(MYSQL, 'MYSQL'),
+	(POSTGRESQL, 'POSTGRESQL'),
+)
 
-class DatosConexion(models.Model):	
-	conexion = models.ForeignKey(Conexion)
-	nombre_parametro = models.CharField(max_length=200) 
-	valor_parametro = models.CharField(max_length=200) 
-	class Meta:
-		ordering = ['nombre_parametro']
-		db_table = ('DatosConexion')
-		verbose_name= ('Dato de conexión')		
-		verbose_name_plural = ('Datos de conexión')	
+class ConexionDB(models.Model):	
+	gestor = models.CharField(choices=BASES_CHOICES, max_length=50)
+	database = models.CharField(max_length=50,help_text='Nombre de la base de datos.')
+	userdb = models.CharField(max_length=50, help_text='Nombre de usuario.')
+	passworddb = models.CharField(max_length=50, help_text='Contraseña de acceso.')
+	host = models.IPAddressField(help_text='Dirección host del equipo.', unique=True)	
+	port = models.CharField(max_length=50, help_text='Puerto de conexión.')
+	class Meta:		
+		db_table = ('ConexionDB')
+		verbose_name= ('Conexion con base de datos.')		
+		verbose_name_plural = ('Conexiones con base de datos.')	
 	def __unicode__(self):
-		return '%s : %s'%(self.nombre_parametro, self.valor_parametro)
+		return '%s : %s'%(self.gestor, self.database)

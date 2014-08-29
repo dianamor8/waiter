@@ -1,0 +1,61 @@
+{% extends "home/panel_administracion/panel_administracion.html" %}
+{% block contenido %}
+<div class="container">
+	<!--<div class="row">-->
+		<div class="col-xs-10 col-xs-offset-1">			
+			<ul class="nav nav-tabs" role="tablist">
+			  <li><a href="#fuentedatos">Fuente de Datos</a></li>
+			  <li><a href="#informacion">Información general</a></li>
+			  <li><a href="#estadistica">Estadísticas</a></li>
+			</ul>
+			<br>
+
+			<div class="contenedor">
+				<div class="contenido" id="fuentedatos">	
+					<br>
+					<form class="form-horizontal" id="form_conexion" method="POST">
+						{% csrf_token %}
+						<div class="form-group">
+							<label class="control-label col-sm-3">
+								{{form_type_conexion.fuente.label}}
+							</label>
+							<div class="col-sm-8">
+								{{form_type_conexion.fuente}}								
+							</div>
+						</div>
+						<div class="formulario" id="localdb">
+							local
+						</div>						
+						<div class="formulario" id="conexiondb">
+							{% for form in form_conexion %}
+								<div class="form-group">
+									<label class="control-label col-sm-3">
+										{{form.label}}
+									</label>
+									<div class="col-sm-8">
+										{{form}}									
+									</div>
+								</div>			
+							{% endfor %}
+							<div class="form-inline">
+								<button type="submit" class='btn btn-success' id='btn_test' for='btn_test'> Test de Conexión </button>			
+							</div>
+						</div>
+						<div class="formulario" id="webservicesdb">
+							ws
+						</div>	
+
+					</form>
+				</div>
+				<div class="contenido" id="informacion">
+					PANEL DE INFORMACION
+				</div>
+				<div class="contenido" id="estadistica">
+					PANEL DE ESTADISTICA
+				</div>				
+			</div>			
+		</div>		
+	<!--</div>-->
+</div>
+
+{% endblock contenido %}

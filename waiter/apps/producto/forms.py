@@ -30,5 +30,4 @@ class addAreaProduccionForm(ModelForm):
 			'nombre':{
 				'required': u"Este valor no puede estar vacío.",
 			},
-
 		}

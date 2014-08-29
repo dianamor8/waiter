@@ -11,8 +11,10 @@
 		<link href="/media/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">				
 		{% block extracss %}			
 		{% endblock extracss %}
-		<script src="/media/js/jquery.js"></script>
+		<script src="/media/js/jquery.js"></script>		
 		<script src="/media/js/jquery.min.js"></script>
+		<script src="/media/js/jquery.validate.js"></script>
+		<script src="/media/js/additional-methods.js"></script>		
 		<script src="/media/bootstrap/js/bootstrap.js"></script>		
 		{% block extrajs %}			
 		{% endblock extrajs %}
@@ -21,7 +23,7 @@
 
 		{% include "base/navbar.html" %}
 
-		<div class="container-fluid" style="padding-top:5%">
+		<div class="container-fluid body-style" style="padding-top:5%; padding-bottom: 5%">
 			<div class="row">
 				
 
@@ -33,7 +35,7 @@
 					<div class="col-sm-3 col-md-2 sidebar">
 						{% include "base/sidebar.html" %}
 					</div>				
-					<div class="col-sm-9 col-md-10 main">
+				<div class="col-sm-9 col-md-10 main">
 						<h1 class="page-header text-center">
 							{% block encabezado %}						
 							{% endblock encabezado %}

@@ -2,12 +2,16 @@
 {% block title %}
 	Panel de Administración
 {% endblock title %}
+{% block extracss %}
+	<link href="/media/css/styleconfigurations.css" rel="stylesheet" media="screen">
+{% endblock extracss %}
 {% block extrajs %}
 	<script src="/media/js/home.js"></script>
 {% endblock extrajs %}
 
+
 {% block panel_superior %}
-	<div class="col-lg-12">
+	<!--<div class="col-lg-12">
 		<div class="jumbotron">
 			<div class="row ">
 				<div class="col-lg-3 col-sm-offset-1">
@@ -30,7 +34,8 @@
 				</div>
 			</div> 
 		</div>
-	</div>	
+	</div>	-->
+	<br>
 	
 	{% block contenido %}
 	{% endblock contenido %}

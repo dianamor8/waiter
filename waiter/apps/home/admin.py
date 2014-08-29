@@ -90,3 +90,7 @@ from django.contrib import admin
 
 #HEROKU
 #http://amatellanes.wordpress.com/2014/02/25/django-heroku-desplegando-una-aplicacion-django-en-heroku/
+
+
+#VALIDATION PLUGIN
+#http://stackoverflow.com/questions/18754020/bootstrap-3-with-jquery-validation-plugin
