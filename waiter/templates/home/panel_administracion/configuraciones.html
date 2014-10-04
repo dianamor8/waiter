@@ -10,10 +10,12 @@
 			</ul>
 			<br>
 
+			<h3>{{respuesta}}</h3>
+
 			<div class="contenedor">
 				<div class="contenido" id="fuentedatos">	
 					<br>
-					<form class="form-horizontal" id="form_conexion" method="POST">
+					<form class="form-horizontal" id="form_conexion" method="POST" >
 						{% csrf_token %}
 						<div class="form-group">
 							<label class="control-label col-sm-3">
@@ -38,7 +40,8 @@
 								</div>			
 							{% endfor %}
 							<div class="form-inline">
-								<button type="submit" class='btn btn-success' id='btn_test' for='btn_test'> Test de Conexión </button>			
+								<button class='btn btn-success' id='btn_test'> Test de Conexión </button>				
+								<div id='id_mensaje_test'>	</div>				
 							</div>
 						</div>
 						<div class="formulario" id="webservicesdb">

@@ -63,6 +63,7 @@ def categories_view(request):
 	if request.user.is_authenticated():
 		cat= Categoria.objects.order_by('pk')
 		ctx= {'categorias':cat}
+		print "pasa categorias"
 		return render(request,'producto/categorie/categories.html',ctx)
 	else:
 		return HttpResponseRedirect(LOGIN_REDIRECT_URL)

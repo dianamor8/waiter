@@ -28,7 +28,7 @@ ESTADO_CHOICES = (
 )
 
 class Conexion(models.Model):	
-	fuente = models.CharField(choices=CONEXION_CHOICES, max_length=2, unique=True)
+	fuente = models.CharField(choices=CONEXION_CHOICES, max_length=2)
 	estado = models.CharField(choices=ESTADO_CHOICES, max_length=2)
 	configurado = models.BooleanField(default=False)
 	class Meta:		
@@ -47,7 +47,7 @@ BASES_CHOICES = (
 
 class ConexionDB(models.Model):	
 	gestor = models.CharField(choices=BASES_CHOICES, max_length=50)
-	database = models.CharField(max_length=50,help_text='Nombre de la base de datos.')
+	database = models.CharField(max_length=50,help_text='Nombre de la base de datos.', null=False, blank=False)
 	userdb = models.CharField(max_length=50, help_text='Nombre de usuario.')
 	passworddb = models.CharField(max_length=50, help_text='Contraseña de acceso.')
 	host = models.IPAddressField(help_text='Dirección host del equipo.', unique=True)	

@@ -19,7 +19,7 @@ class TypeConexionForm(forms.ModelForm):
 			},
 		}	
 		widgets = {
-			'fuente': forms.Select(attrs={'class':'form-control'}),
+			'fuente': forms.Select(attrs={'class':'form-control required'}),
 		}
 		labels ={
 			'fuente' : 'Fuente de Datos:',
@@ -39,7 +39,7 @@ class ConexionDBForm(forms.ModelForm):
 		}
 		error_messages = {		
 			'gestor': {
-				'invalid_choice': u"Selección inválida.",
+				'invalid_choice': u"Selección inválida.",			
 			},
 			'database': {
 				'required': u"Este valor no puede estar vacío.",
@@ -56,10 +56,10 @@ class ConexionDBForm(forms.ModelForm):
 			},
 		}
 		widgets = {
-			'gestor': forms.Select(attrs={'class':'form-control'}),
-			'database': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nombre de la base de datos.'}),
-			'userdb': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Usuario de la base de datos.'}),
-			'passworddb': forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Contraseña de acceso.'}),
-			'host': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Dirección host del equipo.'}),
-        	'port': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Puerto de conexión.'}),            
+			'gestor': forms.Select(attrs={'class':'form-control required'}),
+			'database': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nombre de la base de datos.', 'autocomplete':'off'}),
+			'userdb': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Usuario de la base de datos.', 'autocomplete':'off'}),
+			'passworddb': forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Contraseña de acceso.', 'autocomplete':'off'}),
+			'host': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Dirección host del equipo.', 'autocomplete':'off'}),
+        	'port': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Puerto de conexión.', 'autocomplete':'off'}),            
 		}
